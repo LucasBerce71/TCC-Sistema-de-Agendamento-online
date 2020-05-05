@@ -1,0 +1,85 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Fale Conosco";
+}
+
+@*<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">*@
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+@*<script src="~/Scripts/jquery-3.3.1.slim.min.js"></script>*@
+<script src="~/Scripts/umd/popper.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/CSS/EnviarEmail.css" rel="stylesheet" />
+
+<title>@ViewBag.Title</title>
+<center>
+    <br /><br />
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Olá Usuário, está enfrentando algum tipo de problema?</strong> Envie um email explicando seu problema... Restornaremos contato em breve!!!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</center><br />
+<center>
+    <form method="post" enctype="multipart/form-data" name="frm" onsubmit="return validar(this);" style="width: 600px">
+        <div>
+            <label>Email:</label><br />
+            <input class="form-control" type="email" name="para" id="para" placeholder="Email" style="width: 500px; height: 30px;" data-toggle="tooltip" data-placement="top" title="Digite um email válido" required />
+        </div>
+        <br>
+        <div>
+            <label>Assunto: </label><br />
+            <input id="assunto" type="text" class="form-control" name="assunto" placeholder="Assunto" data-toggle="tooltip" data-placement="top" title="Digite um assunto explicativo" minlength="1" maxlength="50" style="width: 500px; height: 30px;" required />
+        </div>
+        <br />
+        <div>
+            <label>Mensagem:</label>
+            <br />
+            <textarea style="width: 600px; height: 150px;  resize: none;" name="mensagem" placeholder="Escreva sua mensagem aqui" class="form-control"></textarea>
+        </div>
+        <br />
+
+        <button class="btn btn-primary" id="enviar" onclick="validar();">Enviar Agora</button>
+    </form>
+</center>
+<center>
+<br /><br />
+
+
+        <p>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Saiba como enviar seu email da maneira correta!
+            </button>
+        </p>
+
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+            <p>Para garantir que seu email seja entregue aos nossos administradores siga os passos abaixo:</p>
+
+            <p>1) Digite um email válido;</p>
+            <p>2) Esclareça o assunto da melhor maneira possível;</p>
+            <p>3) Deixe sua observação o mais legível possível.</p>
+
+        </div>
+
+
+    </div>
+
+    <h3 id="sucesso">
+        @ViewBag.Message
+
+    </h3>
+</center>
+<br />
+<center>
+    <h3 id="erro">
+        @ViewBag.Error
+    </h3>
+</center>
+
+
+
+

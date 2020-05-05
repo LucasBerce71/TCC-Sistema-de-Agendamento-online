@@ -1,0 +1,106 @@
+﻿@model IEnumerable<TccNovoGrupo.Models.Agenda>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Veja seus horários por aqui:";
+}
+
+<title>@ViewBag.Title</title>
+<link rel="shortcut icon" href="~/Imagens/icon.png" />
+<meta charset="UTF-8">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/CSS/estiloGeral.css" rel="stylesheet" />
+<link href="~/CSS/MenuHamburguer.css" rel="stylesheet" />
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+<br /><br />
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="~/CSS/estiloGeral.css" rel="stylesheet" />
+<link rel="shortcut icon" href="~/Imagens/icon.png" />
+<link href="~/CSS/MenuHamburguer.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<meta charset="UTF-8">
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700i" rel="stylesheet">
+
+
+<style>
+    a{
+        text-decoration: none;
+        color:#fff;
+    }
+    a:hover {
+        text-decoration: none;
+        color: #fff;
+    }
+    hr {
+        border: 1px solid #fff;
+        height: 2px;
+        background-color: #fff;
+    }
+</style>
+<center>
+    <h2 style="color: #fff; text-decoration: underline;">@ViewBag.Title</h2>
+    <hr />
+    <table class="table container" style="border-radius: 100px;">
+        <tr style="background-color: #6c5ce7; color: #fff;">
+
+            <th>
+                <center>Data:</center>
+            </th>
+            <th>
+                <center>Cliente:</center>
+            </th>
+            <th>
+                <center>Profissional:</center>
+            </th>
+            <th>
+                <center>Serviço:</center>
+            </th>
+
+            <th>
+                <center>Horário:</center>
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr style="background-color: #a29bfe; color: #fff;">
+                <td>
+                    <center>@Html.DisplayFor(modelItem => item.data)</center>
+                </td>
+                <td>
+                    <center>@Html.DisplayFor(modelItem => item.nome)</center>
+                </td>
+                <td>
+                    <center>@Html.DisplayFor(modelItem => item.Profissional)</center>
+                </td>
+                <td>
+                    <center>@Html.DisplayFor(modelItem => item.Servico)</center>
+                </td>
+
+                <td>
+                    <center>@Html.DisplayFor(modelItem => item.Inicio)</center>
+                </td>
+                <td>
+                    <center>
+                        <button class="btn btn-outline-danger">
+                            @Html.ActionLink("Excluir", "ExcluirAgendamento", new { id = item.cod_agendamento })
+                        </button>
+                    </center>
+                </td>
+            </tr>
+        }
+
+    </table>
+    @*<button class="btn btn-outline-primary">
+            @Html.ActionLink("Adicionar novo agendamento", "IncluirAgendamento")
+        </button>*@
+</center>

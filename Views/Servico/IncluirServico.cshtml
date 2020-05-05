@@ -1,0 +1,116 @@
+﻿@model TccNovoGrupo.Models.Servicos
+
+@{ 
+    ViewBag.Title = "Cadastrar um novo serviço para o meu salão";
+}
+<link rel="shortcut icon" href="~/Imagens/icon.png" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>@ViewBag.Title</title>
+<link href="~/CSS/estiloGeral.css" rel="stylesheet" />
+<link rel="shortcut icon" href="~/Imagens/icon.png" />
+<link href="~/CSS/MenuHamburguer.css" rel="stylesheet" />
+
+
+
+<meta charset="UTF-8">
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+@*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">*@
+
+<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700i" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <center>
+        <div class="form container">
+            <center><h2 style="color: #fff; text-decoration: underline;">Adicionar um Serviço:</h2></center>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @*@Html.LabelFor(model => model.ServicoId, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <div class="col-md-10">
+                    @*@Html.EditorFor(model => model.ServicoId, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ServicoId, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+
+            <div class="form-group">
+                Serviço:
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Servico, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Servico, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                Preço:
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Preco, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Preco, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                Tempo:
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Tempo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Tempo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                Descrição:
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                Tipo:
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Tipo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Tipo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <center>
+                        <button type="submit" class="btn btn-outline-success">Salvar <i class="far fa-save"></i></button>
+                        <button class="btn btn-outline-danger">
+                            @Html.ActionLink("Cancelar", "ObterServicos") <i class="fas fa-window-close"></i>
+                        </button>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </center>
+}
+
+
+<style>
+    hr {
+        border: 1px solid #fff;
+        height: 2px;
+        background-color: #fff;
+    }
+
+    a {
+        text-decoration: none;
+        color: red;
+    }
+
+        a:hover {
+            text-decoration: none;
+            color: #fff;
+        }
+</style>

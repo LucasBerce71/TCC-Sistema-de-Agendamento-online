@@ -1,0 +1,64 @@
+﻿@model TccNovoGrupo.Models.LoginProfissional
+
+@{
+    ViewBag.Title = "Login";
+}
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="form container">
+        <center><h2>Entre como Profissional</h2></center>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <label>Nome de Usuário:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProfissionalUsuario, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProfissionalUsuario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Senha:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProfissionalPassword, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProfissionalPassword, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <hr />
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <center>
+
+                    <a style="color: #fff;" href="@Url.Action("ObterAgendamento", "Agenda")" class="btn btn-outline-primary">Entrar</a>
+                   
+                </center>
+            </div>
+        </div>
+    </div>
+
+}
+
+<link href="~/CSS/estiloGeral.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<style>
+    hr {
+        border: 1px solid #fff;
+        height: 2px;
+        background-color: #fff;
+    }
+
+    h2 {
+        color: #fff;
+    }
+</style>

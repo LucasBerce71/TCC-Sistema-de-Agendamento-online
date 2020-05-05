@@ -1,0 +1,38 @@
+﻿@model IEnumerable<TccNovoGrupo.Models.ConsultarHorarios>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/CSS/estiloGeral.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<br /><br /><br />
+<center>
+    <table class="table container">
+        <tr style="background-color: #6c5ce7; color: #fff;">
+            <th>
+                <center><label>Código:</label></center>
+            </th>
+            <th>
+                <center><label>Horários:</label></center>
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr style="background-color: #a29bfe; color: #fff;">
+                <td>
+                    <center>
+                        @Html.DisplayFor(modelItem => item.HorarioId)
+                    </center>
+                </td>
+                <td>
+                    <center>
+                        @Html.DisplayFor(modelItem => item.Inicio)
+                    </center>
+                </td>
+
+            </tr>
+        }
+
+    </table>
+</center>

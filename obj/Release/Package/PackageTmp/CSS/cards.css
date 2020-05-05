@@ -1,0 +1,72 @@
+﻿.cardsServicos {
+    background-color: #a29bfe;
+    border-style:solid;
+    border-color: black;
+    border-radius: 15%;
+    padding-top: 5px;
+    margin-left: 100px;
+    width: 250px;
+    height: 350px;
+}
+
+.cardsServicos1 {
+    background-color: #a29bfe;
+    border-style: solid;
+    border-color: black;
+    border-radius: 15%;
+    padding-top: 5px;
+    margin-left: 400px;
+    margin-top: -360px;
+    width: 250px;
+    height: 350px;
+}
+
+.cardsServicos2 {
+    background-color: #a29bfe;
+    border-style: solid;
+    border-color: black;
+    border-radius: 15%;
+    padding-top: 5px;
+    margin-left: 700px;
+    margin-top: -360px;
+    width: 250px;
+    height: 350px;
+}
+
+.cardsServicos3 {
+    background-color: #a29bfe;
+    border-style: solid;
+    border-color: black;
+    border-radius: 15%;
+    padding-top: 5px;
+    margin-left: 1000px;
+    margin-top: -360px;
+    width: 250px;
+    height: 350px;
+}
+
+#btn1 {
+    background-color: #ff9ff3;
+    border-color: #a29bfe;
+}
+
+#btn2 {
+    background-color: #ff9ff3;
+    border-color: #a29bfe;
+}
+
+#btn3 {
+    background-color: #ff9ff3;
+    border-color: #a29bfe;
+}
+
+#btn4 {
+    background-color: #ff9ff3;
+    border-color: #a29bfe;
+}
+
+#cards{
+    border-radius: 50%;
+    margin-left: 25px;
+    width: 190px;
+}

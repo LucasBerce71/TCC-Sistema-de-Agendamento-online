@@ -1,0 +1,97 @@
+﻿@model TccNovoGrupo.Models.Servicos
+
+@{ 
+    ViewBag.Title = "Editar";
+}
+<title>@ViewBag.Title @Html.DisplayFor(model => model.Servico)</title>
+<link rel="shortcut icon" href="~/Imagens/icon.png" />
+<link href="~/CSS/estiloGeral.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<center>
+    <div class="form container">
+        <h2 style="color: #fff; text-decoration: underline;">Editar @Html.DisplayFor(model => model.Servico)</h2>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.ServicoId, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.ServicoId, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form container">
+            Serviço:
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Servico, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Servico, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form container">
+            Preço:
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Preco, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Preco, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form container">
+            Tempo:
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Tempo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Tempo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form container">
+           Descrição:
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form container">
+            Tipo:      
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Tipo, new { htmlAttributes = new { @class = "form-control" } }) <br />
+                @Html.ValidationMessageFor(model => model.Tipo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <hr />
+        <div class="form container">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-outline-success" style="color: #fff;">Salvar <i class="far fa-save" style="color: #06490a"></i></button>
+                <button class="btn btn-outline-danger">
+                    @Html.ActionLink("Cancelar", "ObterServicos") <i class="fas fa-window-close"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</center>
+}
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        a{
+            color: #fff;
+            text-decoration: none;
+        }
+
+        a:hover{
+            color: #fff;
+            text-decoration: none;
+        }
+
+        hr {
+            border: 1px solid #fff;
+            height: 2px;
+            background-color: #fff;
+        }
+    </style>
+
+
+
+

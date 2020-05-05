@@ -1,0 +1,104 @@
+﻿@model TccNovoGrupo.Models.Agenda
+
+@{
+    ViewBag.Title = "Realize um agendamento";
+}
+<link href="~/CSS/estiloGeral.css" rel="stylesheet" />
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.min.css" rel="stylesheet" />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <center>
+        <div class="form container">
+            <center><h2>@ViewBag.Title</h2> </center>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @if (ViewBag.Mensagem != null)
+            {
+                @ViewBag.Mensagem
+            }
+            <div class="form-group">
+                <label style="margin-left: -845px;">Data:</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.data, new { htmlAttributes = new { @class = "form-control" } })<button type="button" style="margin-top: -38px; margin-left: 900px; width: 156px;" class="btn btn-outline-info" onclick="verificaDataHoje()">Que dia é hoje?</button>
+                    @Html.ValidationMessageFor(model => model.data, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label style="margin-left: -755px;">Código do cliente:</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ClienteId, new { htmlAttributes = new { @class = "form-control" } }) <a href="@Url.Action("ObterClientes", "ConsultarClientes")" target="_blank" style="margin-top: -38px; margin-left: 900px; width: 156px;" class="btn btn-outline-info">Exibir Clientes</a>
+                    @Html.ValidationMessageFor(model => model.ClienteId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label style="margin-left: -722px;">Código do Profissional:</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.cod_profissional, new { htmlAttributes = new { @class = "form-control" } }) <a style="margin-top: -38px; margin-left: 900px;" class="btn btn-outline-info" target="_blank" href="@Url.Action("ConsultarProfissionais", "ConsultarProfissionais")">Exibir Profissionais</a>
+                    @Html.ValidationMessageFor(model => model.cod_profissional, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label style="margin-left: -748px;">Código do Serviço:</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.cod_servico, new { htmlAttributes = new { @class = "form-control" } }) <a style="margin-top: -38px; margin-left: 900px;" class="btn btn-outline-info" target="_blank" href="@Url.Action("ConsultarServicos", "ConsultarServicos")">Exibir Serviços</a>
+                    @Html.ValidationMessageFor(model => model.cod_servico, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label style="margin-left: -690px;">Código Horário de Início:</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.cod_inicio, new { htmlAttributes = new { @class = "form-control" } }) <a style="margin-top: -38px; margin-left: 900px; width: 156px;" class="btn btn-outline-info" target="_blank" href="@Url.Action("ConsultarHorarios", "ConsultarHorarios")">Exibir Horários</a>
+                    @Html.ValidationMessageFor(model => model.cod_inicio, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Agendar" class="btn btn-outline-success" onclick="aviso();" />
+                    <script>
+                        function aviso() {
+                          
+                            toastr.success('O agendamento foi realizado com sucesso!', 'Sucesso')
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </center>
+}
+
+<link href="~/Content/toastr.min.css" rel="stylesheet" />
+<script src="~/Scripts/toastr.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    function verificaDataHoje() {
+        var dtn = new Date();
+        var dia = dtn.getDay();
+        var data = dtn.getDate();
+        var mes = dtn.getMonth();
+        var ano = dtn.getFullYear();
+        var arrayDia = ["Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado"];
+        var arrayMes = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Stembro", "Outubro", "Novembro", "Dezembro"];
+
+        alert("Hoje é " + arrayDia[dia] + "" + data + " de " + arrayMes[mes] + " de " + ano);
+    }
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

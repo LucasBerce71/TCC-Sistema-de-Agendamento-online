@@ -1,0 +1,62 @@
+﻿@model TccNovoGrupo.Models.AdmLogin
+
+@{
+    ViewBag.Title = "Login";
+}
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<center><h2>Entre como Adm</h2></center>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form container">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="form-group">
+            <label style="margin-left: 20px;">Login:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AdmUsuario, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AdmUsuario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label style="margin-left: 20px;">Senha:</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AdmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AdmPassword, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <hr />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <center>
+                    <input type="submit" value="Entrar com Administrador" class="btn btn-outline-primary" />
+                </center>
+            </div>
+        </div>
+    </div>
+}
+
+<link href="~/CSS/estiloGeral.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<style>
+    hr {
+        border: 1px solid #fff;
+        height: 2px;
+        background-color: #fff;
+    }
+
+    h2 {
+        color: #fff;
+    }
+</style>

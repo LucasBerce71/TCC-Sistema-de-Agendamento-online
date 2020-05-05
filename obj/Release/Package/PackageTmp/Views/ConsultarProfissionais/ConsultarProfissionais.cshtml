@@ -1,0 +1,60 @@
+﻿@model IEnumerable<TccNovoGrupo.Models.Profissionals>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/CSS/estiloGeral.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<br /><br /><br />
+
+<div class="container mt-3">
+
+    <input class="form-control" id="myInput" type="text" placeholder="Pesquisar Clientes">
+    <br>
+    <table class="table container">
+        <thead>
+            <tr style="background-color: #a29bfe; color: #fff;">
+                <th>Código:</th>
+                <th>Nome:</th>
+                <th>CPF:</th>
+
+            </tr>
+        </thead>
+        <tbody id="myTable">
+            @foreach (var item in Model)
+            {
+                <tr style="background-color: #a29bfe; color: #fff;">
+                    <td>
+                        <center>
+                            @Html.DisplayFor(modelItem => item.ProfissionalId)
+                        </center>
+                    </td>
+                    <td>
+                        <center>
+                            @Html.DisplayFor(modelItem => item.Profissional)
+                        </center>
+                    </td>
+
+                    <td>
+                        <center>
+                            @Html.DisplayFor(modelItem => item.CPF)
+                        </center>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>

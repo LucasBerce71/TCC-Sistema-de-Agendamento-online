@@ -1,0 +1,265 @@
+﻿@model IEnumerable<TccNovoGrupo.Models.Profissionals>
+
+@{ 
+    ViewBag.Title = "Veja seus agendamentos por aqui!!!";
+}
+
+<title>@ViewBag.Title</title>
+<meta charset="UTF-8">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/CSS/estiloGeral.css" rel="stylesheet" />
+<link href="~/CSS/MenuHamburguer.css" rel="stylesheet" />
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>@ViewBag.Title</title>
+<link href="~/CSS/estiloGeral.css" rel="stylesheet" />
+<link rel="shortcut icon" href="~/Imagens/icon.png" />
+<link href="~/CSS/MenuHamburguer.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+<br /><br /><br />
+
+<nav role='navigation' id="mainnav">
+    <br>
+    <br>
+    <br>
+    <ul class="gap">
+        <li>
+            <a href="@Url.Action("Index", "Home")">Inicio do meu site</a>
+        </li>
+        <li>
+            <a href="@Url.Action("ObterProfissional", "Profissional")">Meus Profissionais</a>
+        </li>
+        <li>
+            <a href="@Url.Action("ObterServicos", "Servico")">Meus Serviços</a>
+        </li>
+        <li>
+            <a href="@Url.Action("ObterSalao", "DadosSalao")">Meu salão</a>
+        </li>
+        <li>
+            <a href="@Url.Action("LoginAdm", "LoginAdm")">Sair</a>
+        </li>
+
+    </ul>
+</nav>
+
+<div class="hamb">
+    <a href="#"><i class="fa fa-bars"></i></a>
+</div>
+
+
+<canvas id="bubble"></canvas>
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.3/jquery-ui.js"></script>
+<script>
+
+    var w = window.innerWidth,
+        h = window.innerHeight,
+        canvas = document.getElementById('bubble'),
+        ctx = canvas.getContext('2d'),
+        rate = 60,
+        arc = 100,
+        time,
+        count,
+        size = 7,
+        speed = 20,
+        lights = new Array,
+        colors = ['#d59254', '#ffffff', '#1f2839', '#cf7693'];
+
+    canvas.setAttribute('width', w);
+    canvas.setAttribute('height', h);
+
+    function init() {
+        time = 0;
+        count = 0;
+
+        for (var i = 0; i < arc; i++) {
+            lights[i] = {
+                x: Math.ceil(Math.random() * w),
+                y: Math.ceil(Math.random() * h),
+                toX: Math.random() * 5 + 1,
+                toY: Math.random() * 5 + 1,
+                c: colors[Math.floor(Math.random() * colors.length)],
+                size: Math.random() * size
+            }
+        }
+    }
+
+    function bubble() {
+        ctx.clearRect(0, 0, w, h);
+
+        for (var i = 0; i < arc; i++) {
+            var li = lights[i];
+
+            ctx.beginPath();
+            ctx.arc(li.x, li.y, li.size, 0, Math.PI * 2, false);
+            ctx.fillStyle = li.c;
+            ctx.fill();
+
+            li.x = li.x + li.toX * (time * 0.05);
+            li.y = li.y + li.toY * (time * 0.05);
+
+            if (li.x > w) { li.x = 0; }
+            if (li.y > h) { li.y = 0; }
+            if (li.x < 0) { li.x = w; }
+            if (li.y < 0) { li.y = h; }
+        }
+        if (time < speed) {
+            time++;
+        }
+        timerID = setTimeout(bubble, 1000 / rate);
+    }
+    init();
+    bubble();
+
+    //navigation (this is my code)
+    var animation = 'easeOutCubic';
+    delay = 60;
+
+    $(document)
+        .on('click', '.fa-bars', function () {
+            var i = 0;
+            $('nav').before($('#bubble'));
+            $('#bubble').fadeIn();
+            $('#mainnav').find('li').each(function () {
+                var that = $(this);
+                i++;
+                (function (i, that) {
+                    setTimeout(function () {
+                        that
+                            .animate(
+                                { 'left': '20px' },
+                                {
+                                    duration: 350,
+                                    easing: animation
+                                })
+                            .fadeIn({ queue: false });
+                    }, delay * i)
+                }(i, that))
+            });
+            $('.fa-bars').fadeOut(100, function () {
+                $(this)
+                    .removeClass('fa-bars')
+                    .addClass('fa-times')
+                    .fadeIn();
+            });
+        })
+        .on('click', '#bubble, .fa-times', function () {
+            $('#bubble').fadeOut();
+            $('#mainnav').find('li')
+                .animate(
+                    { 'left': '-550px' },
+                    { duration: 250 })
+                .fadeOut({ queue: false });
+
+            $('.hamb').fadeOut(100, function () {
+                $(this)
+                    .find($('i'))
+                    .removeClass('fa-times')
+                    .addClass('fa-bars')
+                    .end()
+                    .fadeIn();
+            });
+        })
+
+</script>
+<center>
+    <h2 style="color: #fff; text-decoration: underline;">Veja seus Agendamentos atuais:</h2>
+</center>
+<hr />
+<br /><br />
+<table class="table container">
+    <tr style="background-color: #6c5ce7; color: #fff;">
+        <th>
+            <center>Data:</center>
+        </th>
+        <th>
+            <center>Cliente:</center>
+        </th>
+        <th>
+            <center>Serviço:</center>
+        </th>
+        <th>
+            <center>Horário de início:</center>
+        </th>
+        <th>
+            <center>Horário de término:</center>
+        </th>
+        <th>
+            <center>Contato:</center>
+        </th>
+        
+    </tr>
+
+    <tr style="background-color: #a29bfe; color: #fff;">
+        <td>
+            <center>05/05/2019</center>
+        </td>
+        <td>
+            <center>Felipe Coneglian da Silva</center>
+        </td>
+        <td>
+            <center>Barba 1</center>
+        </td>
+        <td>
+            <center>10h30</center>
+        </td>
+        <td>
+            <center>11h00</center>
+        </td>
+        <td>
+            <center>(11)95786-2380</center>
+        </td>
+
+
+    </tr>
+
+    <tr style="background-color: #a29bfe; color: #fff;">
+        <td>
+            <center>05/05/2019</center>
+        </td>
+        <td>
+            <center>Sofia Batista</center>
+        </td>
+        <td>
+            <center>Baby Liss</center>
+        </td>
+        <td>
+            <center>14h00</center>
+        </td>
+        <td>
+            <center>16h00</center>
+        </td>
+        <td>
+            <center>(11)93462-8780</center>
+        </td>
+
+
+    </tr>
+</table>
+<hr />
+<center>
+    <button class="btn btn-outline-danger">
+        @Html.ActionLink("Sair", "LoginAdm", "LoginAdm") <i class="fas fa-sign-out-alt"></i>
+    </button>
+</center>
+<style>
+    a {
+        color: #fff;
+    }
+
+        a:hover {
+            color: #fff;
+            text-decoration: none;
+        }
+
+    hr {
+        border: 1px solid #fff;
+        height: 2px;
+        background-color: #fff;
+    }
+</style>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">

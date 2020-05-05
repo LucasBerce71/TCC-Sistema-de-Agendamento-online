@@ -1,0 +1,45 @@
+﻿@model IEnumerable<TccNovoGrupo.Models.LoginProfissional>
+
+@{
+    ViewBag.Title = "ObterLogins";
+}
+
+<h2>ObterLogins</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeProfissional)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SobrenomeProfissional)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProfissionalUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProfissionalPassword)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomeProfissional)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SobrenomeProfissional)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProfissionalUsuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProfissionalPassword)
+        </td>
+    </tr>
+}
+
+</table>

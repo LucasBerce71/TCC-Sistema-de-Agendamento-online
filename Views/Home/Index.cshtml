@@ -1,0 +1,160 @@
+﻿
+
+<link href="~/CSS/carroussel.css" rel="stylesheet" />
+<link href="~/CSS/Style.css" rel="stylesheet" />
+<link href="~/CSS/estiloGeral.css" rel="stylesheet" />
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ 
+    ViewBag.Title = "Seja Bem Vindo";
+}
+<title>@ViewBag.Title</title>
+
+<style>
+    .ocultarServico {
+        display: none;
+    }
+</style>
+
+<center>
+
+
+    <br />
+    <h1 style="color: #fff; text-decoration: underline;">Nossa força é a sua beleza</h1>
+
+
+</center>
+
+<div class="slidershow middle" style="border-style: solid; border-color: #a29bfe; top: 350px;">
+    <div class="slides">
+        <input type="radio" name="r" id="r1" checked>
+        <input type="radio" name="r" id="r2">
+        <input type="radio" name="r" id="r3">
+        <input type="radio" name="r" id="r4">
+        <input type="radio" name="r" id="r5">
+        <div class="slide">
+            <img src="~/Imagens/CarrouselIndex/caroussel0.jpg" alt="" />
+        </div>
+
+        <div class="slide s1">
+            <img src="~/Imagens/CarrouselIndex/caroussel1.jpg" alt="" />
+        </div>
+
+        <div class="slide">
+            <img src="~/Imagens/CarrouselIndex/caroussel2.jpg" />
+        </div>
+
+        <div class="slide">
+            <img src="~/Imagens/CarrouselIndex/caroussel3.jpg" />
+        </div>
+
+        <div class="slide">
+            <img src="~/Imagens/CarrouselIndex/caroussel4.jpg" />
+        </div>
+    </div>
+
+    <div class="navigation">
+        <label for="r1" class="bar"></label>
+        <label for="r2" class="bar"></label>
+        <label for="r3" class="bar"></label>
+        <label for="r4" class="bar"></label>
+        <label for="r5" class="bar"></label>
+    </div>
+</div>
+
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<hr />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<br><br>
+<center>
+    <h1 style="color: #fff; text-decoration: underline;"><strong>Veja alguns dos nossos serviços</strong></h1><br><br><br>
+</center>
+
+<div class="pricing-table">
+    <div class="col">
+
+        <div class="table" id="s1" style="height: 295px;">
+            <h2>Escova</h2><br />
+            <div class="price" style="margin-top: -25px;">
+                R$100,00
+
+                <span>Escova</span>
+
+            </div>
+
+            <ul>
+                <li><strong>1 hora de duração</strong></li>
+                @*<li><strong>Agende um horário antecipadamente</strong></li>
+                    <li><strong>Responsividade</strong> (Incluso)</li>
+                    <li><strong>Manutenção Mensal</strong> (Incluso)</li>*@
+            </ul><br /><br />
+            <a href="@Url.Action("Login", "LoginRecepcao")" style="margin-top: -18px;">Agendar um horário</a>
+        </div>
+
+    </div>
+    <div class="col">
+
+        <div class="table" style="height:295px;">
+            <h2>Corte Social</h2>
+
+            <div class="pop">+Popular</div>
+
+            <div class="price">
+                R$30,00
+                <span>Corte masculino</span>
+            </div>
+
+            <ul>
+                <li><strong>20 minutos de duração</strong></li>
+                @*<li><strong>Layout Responsivo</strong></li>
+                    <li><strong>Back-end</strong> (JavaScript)</li>
+                    <li><strong>Manutenção</strong> (Mensal)</li>*@
+            </ul>
+            <a href="@Url.Action("Login", "LoginRecepcao")">Agendar Horário</a>
+        </div>
+
+    </div>
+    <div class="col">
+
+        <div class="table" style="height:295px;">
+            <h2>Degrade</h2>
+            <div class="price">
+                $10,00
+                <span>Estilo degrade masculino</span>
+            </div>
+
+            <ul>
+                <li><strong>5 minutos de duração</strong></li>
+            </ul>
+            <a href="@Url.Action("Login", "LoginRecepcao")">Agendar Horário</a>
+        </div>
+
+
+    </div>
+    <div class="col">
+
+        <div class="table" style="height: 295px;">
+            <h2>Luzes</h2>
+            <div class="price">
+                R$40,00
+                <span>Masculino/feminino</span>
+            </div>
+
+            <ul>
+                <li><strong>1 hora de duração</strong></li>
+            </ul>
+            <a href="@Url.Action("Login", "LoginRecepcao")">Agendar Horário</a>
+        </div>
+
+    </div>
+</div>
+
+<br /><br /><br /><br />
+
+
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.min.css" rel="stylesheet" />

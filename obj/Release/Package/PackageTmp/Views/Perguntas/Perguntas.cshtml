@@ -1,0 +1,63 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Perguntas";
+}
+
+<style>
+    .linkDownload{
+        background-color: white;
+    }
+</style>
+
+<link href="~/CSS/PerguntasFrequentes.css" rel="stylesheet" />
+<nav>
+    <div class="item">
+        <input type="checkbox" id="check1">
+        <label for="check1">Como instalar nosso app?</label>
+        <ul>
+            <li>
+                <div class="txt">
+                    <p>
+                        Basta procurar pelo nome do nosso app na loja
+                        de aplicativos do seu smartphone ou acesse pelo link abaixo:
+                    </p>
+
+                    <a class="linkDownload" href="#">Faça o download por aqui</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="item">
+        <input type="checkbox" id="check2">
+        <label for="check2">Como eu posso me cadastrar no Salão?</label>
+        <ul>
+            <li>
+                <div class="txt">
+                    <p>
+                        Para se cadastrar em nosso salão basta você fazer o download do nosso aplicativo
+                        e se cadastrar assim que o aplicativo for aberto.
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="item">
+        <input type="checkbox" id="check3">
+        <label for="check3">Meu smartphone tem compatibilidade com o app do Salão?</label>
+        <ul>
+            <li>
+                <div class="txt">
+                    <p>
+                        Para saber se seu smartphone tem compatibilidade com o nosso
+                        aplicativo, verifique nas configurações do seu smartphone se
+                        a versão do seu sistema operacional é equivalente ou superior à versão 5.0.0
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+

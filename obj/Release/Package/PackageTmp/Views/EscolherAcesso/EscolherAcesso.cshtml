@@ -1,0 +1,33 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewBag.Title = "EscolherAcesso";
+}
+
+<center>
+    <h2 style="color: #fff;">Olá, Como gostaria de entrar?</h2>
+    <hr />
+    <br /><br /><br /><br /><br />
+        <a style="color: #fff;" class="btn btn-outline-primary" href="@Url.Action("Login", "LoginAdm")">Entrar como Administrador</a>
+<br /><br />
+
+        <a style="color: #fff;" class="btn btn-outline-primary" href="@Url.Action("Login", "ProfissionalLogin")">Entrar como Profissional</a>
+<br /><br />
+
+        <a style="color: #fff;" class="btn btn-outline-primary" href="@Url.Action("Login", "LoginRecepcao")">Entrar como Recepcionista</a>
+
+
+</center>
+
+<style>
+    hr {
+        border: 1px solid #fff;
+        height: 2px;
+        background-color: #fff;
+    }
+
+</style>
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/CSS/estiloGeral.css" rel="stylesheet" />

@@ -1,0 +1,42 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Escolha";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link href="~/CSS/Escolha.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="links">
+        <label for="rd_nodejs">Motivo 1</label>
+        <label for="rd_bootstrap">Motivo 2</label>
+        <label for="rd_sass">Motivo 3</label>
+        <label for="rd_ruby">Motivo 4</label>
+        <label for="rd_angular">Motivo 5</label>
+    </nav>
+
+    <div class="scroll">
+        <input type="radio" name="grupo" id="rd_nodejs" checked="true">
+        <input type="radio" name="grupo" id="rd_bootstrap">
+        <input type="radio" name="grupo" id="rd_sass">
+        <input type="radio" name="grupo" id="rd_ruby">
+        <input type="radio" name="grupo" id="rd_angular">
+
+        <section class="sections">
+            <section class="bloco" id="nodejs"><h1>Agendamento de Horários online</h1></section>
+            <section class="bloco" id="bootstrap"><h1>Controle dos seus agendamentos via aplicativo</h1></section>
+            <section class="bloco" id="sass"><h1>Qualidade e Facilidade no Agendamento dos seus serviços</h1></section>
+            <section class="bloco" id="ruby"><h1>Qualidade em serviços</h1></section>
+            <section class="bloco" id="angular"><h1>Profissionais de alta qualidade</h1></section>
+        </section>
+
+    </div>
+</body>
+</html>
+

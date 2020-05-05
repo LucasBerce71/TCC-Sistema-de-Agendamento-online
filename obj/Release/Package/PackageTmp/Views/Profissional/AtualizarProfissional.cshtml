@@ -1,0 +1,103 @@
+﻿@model TccNovoGrupo.Models.Profissionals
+
+@{ 
+    ViewBag.Title = "Editar o profissional";
+}
+
+<title>@ViewBag.Title @Html.DisplayFor(model => model.Profissional)</title>
+<link rel="shortcut icon" href="~/Imagens/icon.png" />
+<link href="~/CSS/estiloGeral.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+<style>
+    hr {
+        border: 1px solid #fff;
+        height: 2px;
+        background-color: #fff;
+    }
+</style>
+<br /><br />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <center>
+        <div class="form container">
+            <h2 style="color: #fff; text-decoration: underline;">Editar Profissional @Html.DisplayFor(model => model.Profissional) </h2>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+
+                <div class="col-md-10">
+                    @Html.HiddenFor(model => model.ProfissionalId, new { htmlAttributes = new { @class = "form-control" } })
+                 </div>
+            </div>
+
+            <div class="form-group">
+                Profissional:
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Profissional, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Profissional, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                CPF:
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CPF, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CPF, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                Data de Admissão:
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DataAdmissao, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DataAdmissao, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                Data de Nascimento:
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DataNascimento, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DataNascimento, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                Salário:
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Salario, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Salario, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" class="btn btn-outline-success">Salvar <i class="far fa-save"></i></button>
+                    <button class="btn btn-outline-danger">
+                        @Html.ActionLink("Cancelar", "ObterProfissional") <i class="fas fa-window-close"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </center>
+}
+
+    <style>
+        a{
+            color: red;
+        }
+
+        a:hover{
+            color: #fff;
+            text-decoration: none;
+        }
+    </style>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

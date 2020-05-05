@@ -1,0 +1,253 @@
+﻿@model IEnumerable<TccNovoGrupo.Models.DadosSalao>
+
+@{ 
+    ViewBag.Title = "Dados do meu salão";
+}
+
+<title>@ViewBag.Title</title>
+<meta charset="UTF-8">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/CSS/estiloGeral.css" rel="stylesheet" />
+<link href="~/CSS/MenuHamburguer.css" rel="stylesheet" />
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>@ViewBag.Title</title>
+<link href="~/CSS/estiloGeral.css" rel="stylesheet" />
+<link rel="shortcut icon" href="~/Imagens/icon.png" />
+<link href="~/CSS/MenuHamburguer.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+<br /><br /><br />
+
+<nav role='navigation' id="mainnav">
+    <br>
+    <br>
+    <br>
+    <ul class="gap">
+        <li>
+            <a href="@Url.Action("Index", "Home")">Inicio do meu site</a>
+        </li>
+        <li>
+            <a href="@Url.Action("ObterProfissional", "Profissional")">Meus Profissionais</a>
+        </li>
+        <li>
+            <a href="@Url.Action("ObterServicos", "Servico")">Meus Serviços</a>
+        </li>
+        <li>
+            <a href="@Url.Action("ObterSalao", "DadosSalao")">Meu salão</a>
+        </li>
+        <li>
+            @Html.ActionLink("Cadastrar nova conta para um Recepcionista", "Cadastro", "LoginRecepcao")
+        </li>
+        <li>
+            @Html.ActionLink("Cadastrar nova conta para um Profissional", "Cadastro", "ProfissionalLogin")
+        </li>
+        <li>
+            <a href="@Url.Action("EscolherAcesso", "EscolherAcesso")">Sair</a>
+        </li>
+
+    </ul>
+</nav>
+
+<div class="hamb">
+    <a href="#"><i class="fa fa-bars"></i></a>
+</div>
+
+
+<canvas id="bubble"></canvas>
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.3/jquery-ui.js"></script>
+<script>
+
+    var w = window.innerWidth,
+        h = window.innerHeight,
+        canvas = document.getElementById('bubble'),
+        ctx = canvas.getContext('2d'),
+        rate = 60,
+        arc = 100,
+        time,
+        count,
+        size = 7,
+        speed = 20,
+        lights = new Array,
+        colors = ['#d59254', '#ffffff', '#1f2839', '#cf7693'];
+
+    canvas.setAttribute('width', w);
+    canvas.setAttribute('height', h);
+
+    function init() {
+        time = 0;
+        count = 0;
+
+        for (var i = 0; i < arc; i++) {
+            lights[i] = {
+                x: Math.ceil(Math.random() * w),
+                y: Math.ceil(Math.random() * h),
+                toX: Math.random() * 5 + 1,
+                toY: Math.random() * 5 + 1,
+                c: colors[Math.floor(Math.random() * colors.length)],
+                size: Math.random() * size
+            }
+        }
+    }
+
+    function bubble() {
+        ctx.clearRect(0, 0, w, h);
+
+        for (var i = 0; i < arc; i++) {
+            var li = lights[i];
+
+            ctx.beginPath();
+            ctx.arc(li.x, li.y, li.size, 0, Math.PI * 2, false);
+            ctx.fillStyle = li.c;
+            ctx.fill();
+
+            li.x = li.x + li.toX * (time * 0.05);
+            li.y = li.y + li.toY * (time * 0.05);
+
+            if (li.x > w) { li.x = 0; }
+            if (li.y > h) { li.y = 0; }
+            if (li.x < 0) { li.x = w; }
+            if (li.y < 0) { li.y = h; }
+        }
+        if (time < speed) {
+            time++;
+        }
+        timerID = setTimeout(bubble, 1000 / rate);
+    }
+    init();
+    bubble();
+
+    //navigation (this is my code)
+    var animation = 'easeOutCubic';
+    delay = 60;
+
+    $(document)
+        .on('click', '.fa-bars', function () {
+            var i = 0;
+            $('nav').before($('#bubble'));
+            $('#bubble').fadeIn();
+            $('#mainnav').find('li').each(function () {
+                var that = $(this);
+                i++;
+                (function (i, that) {
+                    setTimeout(function () {
+                        that
+                            .animate(
+                                { 'left': '20px' },
+                                {
+                                    duration: 350,
+                                    easing: animation
+                                })
+                            .fadeIn({ queue: false });
+                    }, delay * i)
+                }(i, that))
+            });
+            $('.fa-bars').fadeOut(100, function () {
+                $(this)
+                    .removeClass('fa-bars')
+                    .addClass('fa-times')
+                    .fadeIn();
+            });
+        })
+        .on('click', '#bubble, .fa-times', function () {
+            $('#bubble').fadeOut();
+            $('#mainnav').find('li')
+                .animate(
+                    { 'left': '-550px' },
+                    { duration: 250 })
+                .fadeOut({ queue: false });
+
+            $('.hamb').fadeOut(100, function () {
+                $(this)
+                    .find($('i'))
+                    .removeClass('fa-times')
+                    .addClass('fa-bars')
+                    .end()
+                    .fadeIn();
+            });
+        })
+
+</script>
+<style>
+    hr {
+        border: 1px solid #fff;
+        height: 2px;
+        background-color: #fff;
+    }
+</style>
+<center><h2 style="color: #fff; text-decoration: underline;">Veja algumas informações do seu salão:</h2></center>
+<hr />
+<table class="table container">
+    <tr style="background-color: #6c5ce7; color: #fff; ">
+        <th>
+            <center>Nome:</center>
+        </th>
+        <th>
+            <center>Endereço:</center>
+        </th>
+        <th>
+            <center>CEP:</center>
+        </th>
+        <th>
+            <center>Estado:</center>
+        </th>
+        <th>
+            <center>Contato:</center>
+        </th>
+        <th>
+            <center>Proprietário:</center>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr style="background-color: #a29bfe; color: #fff;">
+            <td>
+                @Html.DisplayFor(modelItem => item.Salao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Endereco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CEP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contato)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Proprietario)
+            </td>
+            <td>
+                <button class="btn btn-outline-success">
+                    <i class="far fa-edit"></i> @Html.ActionLink("Editar", "EditarSalao", new { id = item.SalaoId })
+                </button>
+            </td>
+        </tr>
+    }
+
+</table>
+<hr />
+
+
+<style>
+    a {
+        color: #fff;
+    }
+
+        a:hover {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        #bubble{
+            margin-top: -71px;
+        }
+</style>

@@ -1,0 +1,211 @@
+﻿@model List<TccNovoGrupo.Models.Agendamento>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Realize um agendamento";
+}
+
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+<style>
+    .form-control {
+        padding: 0px;
+    }
+
+    p, h1, h2, h3, label {
+        color: #fff;
+    }
+</style>
+
+<script>
+    function addServico2() {
+        $("#servico2").removeClass("invisivel");
+        $("#servico2").addClass("visivel");
+        return false;
+    }
+
+    function addServico3() {
+        $("#servico3").removeClass("invisivel");
+        $("#servico3").addClass("visivel");
+        return false;
+    }
+
+    function addServico4() {
+        $("#servico4").removeClass("invisivel");
+        $("#servico4").addClass("visivel");
+    }
+
+    function addServico5() {
+        $("#servico5").removeClass("invisivel");
+        $("#servico5").addClass("visivel");
+    }
+
+    function addServico6() {
+        toastr.error("Você atingiu o limite de agendamentos diários", "OPS :(")
+    }
+
+</script>
+
+<script>
+
+    var dt = new Date();
+    var diasem = dt.getDay();
+    var dia = dt.getDate();
+    var mes = dt.getMonth();
+    var ano = dt.getFullYear();
+    var horas = dt.getHours();
+    var minutos = dt.getMinutes();
+
+
+    var meses = new Array("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro");
+    var semanas = new Array("Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado");
+
+
+</script>
+
+<style>
+    p {
+        font-size: 25px;
+    }
+
+    label {
+        font-size: 25px;
+    }
+
+    .invisivel {
+        display: none;
+    }
+
+    .visivel {
+        display: block;
+    }
+</style>
+<title>@ViewBag.Title</title>
+<link href="~/CSS/estiloGeral.css" rel="stylesheet" />
+<center>
+    <h1 style="text-decoration: underline;">Realizar um Agendamento</h1>
+
+    <center>
+        <script>
+            document.write(semanas[diasem] + ", " + dia + " de " + meses[mes] + " de " + ano + "<br/>" + "<br/>" + "<br/>").style.color = "#fff";
+        </script>
+    </center>
+    <hr />
+    <form>
+        <label><i class="fas fa-user-clock" style="color: #fff"></i> Nome do Cliente:</label><br /><br />
+        <input type="text" name="name" value="" style="width: 500px; height: 30px;" class="form-control" id="cpf" /><br /><br />
+        <label><i class="fas fa-cut" style="color: #fff"></i> Selecione um serviço:</label><br /><br />
+        <select name="" class="form-control" style="width: 500px; height: 30px;">
+            @foreach (var item in @ViewBag.dadosAgenda)
+            {
+                <option>@item.Servico</option>
+            }
+        </select><br /><br />
+        <label><i class="fas fa-user-tie" style="color: #fff"></i> Selecione o profissional</label><br /><br />
+        <select class="form-control" style="width: 500px; height: 30px;">
+            @foreach (var item in ViewBag.dadosProfissional)
+            {
+                <option>@item.Profissional</option>
+            }
+        </select><br /><br />
+        <label><i class="far fa-calendar-check" style="color: #fff"></i> Data do serviço:</label><br /><br />
+        <input type="text" name="telefone" id="telefone" maxlength="15" class="form-control" style="width: 500px; height: 30px;" /><br /><br />
+        <p><i class="far fa-clock" style="color: #fff"></i> Início:</p>
+        <select class="form-control" style="width: 300px; height: 30px;">
+            @foreach (var item in ViewBag.dadosHorario)
+            {
+                <option>@item.Inicio</option>
+            }
+        </select>
+        <br />
+        <p><i class="far fa-clock" style="color: #fff"></i> Fim:</p>
+        <select class="form-control" style="width: 300px; height: 30px;">
+            @foreach (var item in ViewBag.dadosHorario)
+            {
+                <option>@item.Fim</option>
+            }
+        </select><br /><br />
+
+        <button type="button" class="btn btn-outline-success" onclick="addServico2()">Novo Serviço <i class="far fa-plus-square" style="color: #fff"></i></button><br /><br />
+
+
+
+        <div id="servico2" class="invisivel">
+            <hr />
+            <label>Selecione um serviço:</label><br /><br />
+            <select class="form-control" style="width: 500px; height: 30px;">
+                @foreach (var item in ViewBag.dadosAgenda)
+                {
+                    <option>@item.Servico</option>
+                }
+            </select><br /><br />
+            <label>Selecione o profissional</label><br /><br />
+            <select class="form-control" style="width: 500px; height: 30px;">
+                @foreach (var item in ViewBag.dadosProfissional)
+                {
+                    <option>@item.Profissional</option>
+                }
+            </select><br /><br />
+            <p>Início:</p>
+            <select class="form-control" style="width: 300px; height: 30px;">
+                @foreach (var item in ViewBag.dadosHorario)
+                {
+                    <option>@item.Inicio</option>
+                }
+            </select>
+            <br />
+            <p>Fim:</p>
+            <select class="form-control" style="width: 300px; height: 30px;">
+                @foreach (var item in ViewBag.dadosHorario)
+                {
+                    <option>@item.Fim</option>
+                }
+            </select><br /><br />
+            <button type="button" class="btn btn-outline-success" onclick="addServico3()">Novo Serviço</button><br /><br />
+
+        </div>
+
+        <div id="servico3" class="invisivel">
+            <hr />
+            <label>Selecione um serviço:</label><br /><br />
+            <select class="form-control" style="width: 500px; height: 30px;">
+                @foreach (var item in ViewBag.dadosAgenda)
+                {
+                    <option>@item.Servico</option>
+                }
+            </select><br /><br />
+            <label>Selecione o profissional</label><br /><br />
+            <select class="form-control" style="width: 500px; height: 30px;">
+                @foreach (var item in ViewBag.dadosProfissional)
+                {
+                    <option>@item.Profissional</option>
+                }
+            </select><br /><br />
+            <p>Início:</p>
+            <select class="form-control" style="width: 300px; height: 30px;">
+                @foreach (var item in ViewBag.dadosHorario)
+                {
+                    <option>@item.Inicio</option>
+                }
+            </select>
+            <br />
+            <p>Fim:</p>
+            <select class="form-control" style="width: 300px; height: 30px;">
+                @foreach (var item in ViewBag.dadosHorario)
+                {
+                    <option>@item.Fim</option>
+                }
+            </select><br /><br />
+            <button type="button" class="btn btn-outline-success" onclick="addServico6()">Novo Serviço</button><br /><br />
+            <hr />
+        </div>
+        <button style="width: 350px; height: 30px;" class="btn btn-primary">Agendar</button><br /><br />
+
+
+    </form>
+</center>
+

@@ -1,0 +1,95 @@
+﻿body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+h1 {
+    color: #fff;
+}
+
+.links {
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    display: flex;
+}
+
+    .links label {
+        padding: 10px 0;
+        flex-grow: 1;
+        cursor: pointer;
+        transition: all 0.4s;
+        text-align: center;
+        font-family: 'Arial';
+        font-size: 100%;
+        color: #fff;
+    }
+
+        .links label:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+.scroll input {
+    display: none;
+}
+
+.bloco {
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+    .bloco img {
+        width: 100%;
+    }
+
+#nodejs {
+    background-color: #7fbd42;
+}
+
+#bootstrap {
+    background-color: #69f;
+}
+
+#sass {
+    background-color: #faa;
+}
+
+#ruby {
+    background-color: #aaa;
+}
+
+#angular {
+    background-color: #414950;
+}
+
+.scroll {
+    display:    flex;
+    width: 300vw;
+    height: 100vh;
+    overflow-x:auto;
+    overflow-y: hidden;
+    margin-left: -115px;
+}
+
+.sections {
+    transition: all 0.4s;
+}
+
+#rd_bootstrap:checked ~ .sections {
+    margin-top: -100vh;
+}
+
+#rd_sass:checked ~ .sections {
+    margin-top: -200vh;
+}
+
+#rd_ruby:checked ~ .sections {
+    margin-top: -300vh;
+}
+
+#rd_angular:checked ~ .sections {
+    margin-top: -400vh;
+}
